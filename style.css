@@ -1,0 +1,243 @@
+:root{
+  --paper:#F4EEE2;
+  --surface:#FCF9F2;
+  --ink:#2A2520;
+  --soft:#7A7165;
+  --faint:#A79E8E;
+  --line:#E5DBC8;
+  --line-soft:#EFE7D7;
+
+  --meat:#C0492F;   /* 肉 — soy-braise red   */
+  --fish:#2F6F8F;   /* 魚 — indigo          */
+  --veg:#5E8C3B;    /* 野菜 — chive green   */
+  --egg:#CE9226;    /* 卵・豆腐 — amber     */
+  --basic:#8A6A3B;  /* だし・基礎 — soy brown */
+
+  --mono:ui-monospace,SFMono-Regular,"SF Mono","Roboto Mono",Menlo,Consolas,monospace;
+  --sans:"Hiragino Kaku Gothic ProN","Hiragino Sans","PingFang TC","PingFang SC","Microsoft JhengHei",system-ui,-apple-system,sans-serif;
+
+  --radius:16px;
+  --shadow:0 1px 2px rgba(42,37,32,.05),0 8px 24px rgba(42,37,32,.07);
+  --c:var(--ink); /* per-view category accent, overridden by .cat-* */
+}
+
+.cat-meat{--c:var(--meat)}
+.cat-fish{--c:var(--fish)}
+.cat-veg{--c:var(--veg)}
+.cat-egg{--c:var(--egg)}
+.cat-basic{--c:var(--basic)}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  line-height:1.72;
+  letter-spacing:.01em;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+/* noren — the four section colours, divided like a shop curtain */
+.noren{
+  display:flex; height:6px; width:100%;
+  position:sticky; top:0; z-index:20;
+}
+.noren i{flex:1}
+.noren i:nth-child(1){background:var(--meat)}
+.noren i:nth-child(2){background:var(--fish)}
+.noren i:nth-child(3){background:var(--veg)}
+.noren i:nth-child(4){background:var(--egg)}
+.noren i:nth-child(5){background:var(--basic)}
+
+.wrap{
+  max-width:1060px; margin:0 auto;
+  padding:0 18px calc(64px + env(safe-area-inset-bottom));
+}
+
+.kicker{
+  font-family:var(--mono);
+  font-size:12px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--faint);
+}
+
+/* ---------- index header ---------- */
+.head{padding:38px 2px 14px}
+.head h1{
+  font-size:clamp(34px,9vw,52px);
+  line-height:1.04; margin:.18em 0 .12em; font-weight:800;
+  letter-spacing:.02em;
+}
+.head .sub{color:var(--soft); font-size:15px; margin:0; max-width:34ch}
+
+/* ---------- filter bar ---------- */
+.filters{
+  display:flex; gap:8px; flex-wrap:wrap;
+  padding:18px 0 22px; position:sticky; top:6px; z-index:10;
+}
+.filter{
+  font-family:var(--mono); font-size:13px;
+  border:1px solid var(--line); background:var(--surface); color:var(--soft);
+  padding:7px 14px; border-radius:999px; cursor:pointer;
+  transition:transform .12s ease, background .12s ease, color .12s ease, border-color .12s ease;
+}
+.filter:hover{border-color:var(--faint)}
+.filter[aria-pressed="true"]{
+  background:var(--ink); color:var(--paper); border-color:var(--ink);
+}
+
+/* ---------- card grid ---------- */
+.grid{
+  display:grid; gap:16px;
+  grid-template-columns:1fr;
+}
+@media(min-width:620px){.grid{grid-template-columns:1fr 1fr}}
+@media(min-width:960px){.grid{grid-template-columns:1fr 1fr 1fr}}
+
+.card{
+  display:block; text-decoration:none; color:inherit;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  border-top:4px solid var(--c);
+  padding:18px 18px 16px;
+  box-shadow:var(--shadow);
+  transition:transform .14s ease, box-shadow .14s ease;
+}
+.card:hover{transform:translateY(-3px); box-shadow:0 2px 4px rgba(42,37,32,.06),0 16px 34px rgba(42,37,32,.12)}
+.card-top{display:flex; align-items:center; justify-content:space-between; gap:10px}
+.tag{
+  font-size:12.5px; font-weight:700;
+  color:#fff; background:var(--c);
+  padding:3px 10px; border-radius:7px;
+  letter-spacing:.04em; white-space:nowrap;
+}
+.card-meta{font-family:var(--mono); font-size:11.5px; color:var(--faint); text-align:right}
+.card-name{font-size:23px; font-weight:800; margin:13px 0 1px; letter-spacing:.01em}
+.card-jp{font-family:var(--mono); font-size:13px; color:var(--c); margin-bottom:8px; opacity:.92}
+.card-desc{font-size:14.5px; color:var(--soft); margin:0 0 13px}
+.chips{display:flex; gap:6px; flex-wrap:wrap}
+.pill{
+  font-size:12px; color:var(--soft);
+  background:var(--paper); border:1px solid var(--line-soft);
+  padding:2px 9px; border-radius:999px;
+}
+
+/* ---------- detail ---------- */
+.detail{padding-top:24px; max-width:760px}
+.back{
+  display:inline-flex; align-items:center; gap:6px;
+  font-family:var(--mono); font-size:13px; color:var(--soft);
+  text-decoration:none; padding:8px 0;
+}
+.back:hover{color:var(--ink)}
+.detail-head{margin:6px 0 26px}
+.detail-head .tag{display:inline-block; margin-bottom:14px}
+.detail-head h1{font-size:clamp(30px,7vw,42px); margin:0 0 4px; font-weight:800; line-height:1.08}
+.detail-head .jp{font-family:var(--mono); color:var(--c); font-size:15px; margin:0 0 4px}
+.detail-head .desc{color:var(--soft); margin:10px 0 0; font-size:16px}
+.metarow{
+  display:flex; gap:8px; flex-wrap:wrap; margin-top:18px;
+}
+.metarow span{
+  font-family:var(--mono); font-size:12.5px; color:var(--soft);
+  background:var(--surface); border:1px solid var(--line);
+  padding:5px 11px; border-radius:8px;
+}
+
+.section{margin:30px 0}
+.section > h3{
+  font-size:13px; font-family:var(--mono); letter-spacing:.18em; text-transform:uppercase;
+  color:var(--c); margin:0 0 14px;
+  display:flex; align-items:center; gap:9px;
+}
+.section > h3::before{content:""; width:9px; height:9px; border-radius:2px; background:var(--c)}
+
+/* ingredients */
+.ing-group{font-size:14.5px; font-weight:700; color:var(--ink); margin:18px 0 8px}
+.ing-group:first-child{margin-top:0}
+.ing{
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 10px;
+  padding:9px 0; border-bottom:1px dashed var(--line);
+}
+.ing-item{font-weight:600; font-size:15.5px; min-width:84px}
+.ing-note{color:var(--soft); font-size:13.5px; flex:1; min-width:140px}
+.jp-chip{
+  font-family:var(--mono); font-size:12px; color:var(--ink);
+  background:var(--surface); border:1px solid var(--line);
+  padding:2px 9px 2px 16px; border-radius:6px;
+  position:relative; white-space:nowrap;
+}
+/* the "shelf-tag punch hole" */
+.jp-chip::before{
+  content:""; position:absolute; left:6px; top:50%; transform:translateY(-50%);
+  width:5px; height:5px; border-radius:50%;
+  background:var(--paper); box-shadow:inset 0 0 0 1px var(--line);
+}
+
+/* steps */
+.steps{list-style:none; counter-reset:step; margin:0; padding:0}
+.steps li{
+  display:flex; gap:14px; padding:11px 0;
+  border-bottom:1px solid var(--line-soft);
+}
+.steps li:last-child{border-bottom:none}
+.steps .num{
+  flex:none; width:28px; height:28px; border-radius:50%;
+  background:var(--c); color:#fff;
+  font-family:var(--mono); font-size:13px; font-weight:700;
+  display:grid; place-items:center; margin-top:2px;
+}
+.steps .txt{font-size:15.5px}
+
+/* compare table */
+.tbl-cap{font-size:13.5px; color:var(--soft); margin:0 0 10px}
+table.cmp{width:100%; border-collapse:collapse; font-size:14px}
+table.cmp th,table.cmp td{
+  text-align:left; padding:9px 10px; border-bottom:1px solid var(--line);
+}
+table.cmp th{
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--faint); font-weight:600;
+}
+table.cmp td:first-child{font-weight:600}
+
+/* variation + tips boxes */
+.box{
+  background:color-mix(in srgb, var(--c) 7%, var(--surface));
+  border:1px solid color-mix(in srgb, var(--c) 22%, var(--line));
+  border-radius:12px; padding:15px 16px; margin:12px 0;
+}
+.box h4{margin:0 0 9px; font-size:15.5px; font-weight:700; color:var(--ink)}
+.box ul{margin:0; padding-left:18px}
+.box li{font-size:14.5px; margin:5px 0; color:var(--ink)}
+.tips ul{margin:0; padding-left:18px}
+.tips li{font-size:14.5px; margin:7px 0; color:var(--ink)}
+.tips li::marker{content:"› "; color:var(--c)}
+
+.foot{
+  margin-top:48px; padding-top:18px; border-top:1px solid var(--line);
+  font-family:var(--mono); font-size:12px; color:var(--faint);
+}
+
+/* a11y */
+a:focus-visible,.filter:focus-visible{
+  outline:2px solid var(--c); outline-offset:3px; border-radius:8px;
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition:none !important; animation:none !important}
+}
+
+/* card entrance */
+@media(prefers-reduced-motion:no-preference){
+  .grid .card{animation:rise .42s ease both}
+  .grid .card:nth-child(2){animation-delay:.04s}
+  .grid .card:nth-child(3){animation-delay:.08s}
+  .grid .card:nth-child(4){animation-delay:.12s}
+  .grid .card:nth-child(5){animation-delay:.16s}
+  .grid .card:nth-child(6){animation-delay:.20s}
+  .grid .card:nth-child(n+7){animation-delay:.24s}
+}
+@keyframes rise{from{opacity:0; transform:translateY(10px)}to{opacity:1; transform:none}}

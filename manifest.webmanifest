@@ -1,0 +1,14 @@
+{
+  "name": "料理メモ",
+  "short_name": "料理メモ",
+  "description": "在日本超市買得到的家庭料理 — 繁中作法＋日文食材標籤",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F4EEE2",
+  "theme_color": "#F4EEE2",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
