@@ -6,7 +6,7 @@
 
 - **手機／任何地方**：https://aacczury.github.io/ryouri-memo/ （可「加入主畫面」變 app，離線可看）
 - **本機**：直接用瀏覽器打開 `index.html`（純靜態、不用伺服器）
-- 首頁：依分類（肉／魚／野菜／卵・豆腐／基礎）篩選，點卡片看作法。
+- 首頁：依分類（肉／魚／野菜／卵・豆腐／基礎／甘味）篩選，點卡片看作法。
 - 部署與更新流程見 `DEPLOY.md`。
 
 ## 新增 / 修改食譜
@@ -16,7 +16,7 @@
 ```js
 {
   id: "英文-代號",            // 網址用，唯一
-  cat: "meat",               // meat | fish | veg | egg | basic（決定顏色與分類）
+  cat: "meat",               // meat | fish | veg | egg | basic | sweet（決定顏色與分類）
   catLabel: "牛肉",          // 卡片上顯示的小標
   name: "菜名",
   jp: "日文名 / 讀音",

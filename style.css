@@ -12,6 +12,7 @@
   --veg:#5E8C3B;    /* 野菜 — chive green   */
   --egg:#CE9226;    /* 卵・豆腐 — amber     */
   --basic:#8A6A3B;  /* だし・基礎 — soy brown */
+  --sweet:#A05A78;  /* 甘味 — azuki plum      */
 
   --mono:ui-monospace,SFMono-Regular,"SF Mono","Roboto Mono",Menlo,Consolas,monospace;
   --sans:"Hiragino Kaku Gothic ProN","Hiragino Sans","PingFang TC","PingFang SC","Microsoft JhengHei",system-ui,-apple-system,sans-serif;
@@ -26,6 +27,7 @@
 .cat-veg{--c:var(--veg)}
 .cat-egg{--c:var(--egg)}
 .cat-basic{--c:var(--basic)}
+.cat-sweet{--c:var(--sweet)}
 
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -51,6 +53,7 @@ body{
 .noren i:nth-child(3){background:var(--veg)}
 .noren i:nth-child(4){background:var(--egg)}
 .noren i:nth-child(5){background:var(--basic)}
+.noren i:nth-child(6){background:var(--sweet)}
 
 .wrap{
   max-width:1060px; margin:0 auto;

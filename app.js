@@ -7,8 +7,9 @@ const CATS = {
   veg:   { label: "野菜",      filter: "野菜"      },
   egg:   { label: "卵・豆腐",  filter: "卵・豆腐"  },
   basic: { label: "基礎",      filter: "だし・基礎" },
+  sweet: { label: "甘味",      filter: "甘味"      },
 };
-const FILTER_ORDER = ["all", "meat", "fish", "veg", "egg", "basic"];
+const FILTER_ORDER = ["all", "meat", "fish", "veg", "egg", "basic", "sweet"];
 
 let filter = "all";
 const app = document.getElementById("app");
