@@ -25,3 +25,13 @@ git init -b main && git add -A && git commit -m "init"
 gh repo create ryouri-memo --public --source=. --push
 gh api -X POST repos/$(gh api user -q .login)/ryouri-memo/pages --input - <<<'{"source":{"branch":"main","path":"/"}}'
 ```
+
+## push 被 403 拒絕？
+
+`gh` 同時登了公司帳號（zchiu_e2nova）和個人帳號（aacczury），active 的那個會被 git
+credential helper 拿去用。看到
+`Permission to aacczury/ryouri-memo.git denied to zchiu_e2nova` 就切回來再推：
+
+```
+gh auth switch -u aacczury && git push
+```
