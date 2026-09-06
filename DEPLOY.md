@@ -35,3 +35,7 @@ credential helper 拿去用。看到
 ```
 gh auth switch -u aacczury && git push
 ```
+
+（2026-07-19 起已一勞永逸：repo 內設了 `git config credential."https://github.com".username aacczury`，
+gh 的 credential helper 會直接取 aacczury 的 token，不再受 active 帳號影響。上面的 switch 只在
+這個設定被清掉時才需要。）
