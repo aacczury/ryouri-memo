@@ -47,7 +47,7 @@ function renderHome() {
     <header class="head">
       <p class="kicker">Recipe Notes · 在日本廚房</p>
       <h1>料理メモ</h1>
-      <p class="sub">在日本超市買得到的家庭料理 — 繁中作法，食材附日文標籤方便照買。</p>
+      <p class="sub">在日本超市買得到的家庭料理 — 繁中作法，食材附日文標籤方便照買。 <span class="refline" id="refline" onclick="refreshApp()">↻ 更新</span></p>
     </header>
     <nav class="filters">${filters}</nav>
     <main class="grid">${cards || '<p class="sub">這個分類還沒有食譜。</p>'}</main>
@@ -126,6 +126,21 @@ function renderDetail(r) {
   // fill step numbers (kept out of the template so they always match order)
   app.querySelectorAll(".steps .num").forEach((el, i) => { el.textContent = i + 1; });
 }
+
+// force-refresh: bust the HTTP cache for core files (the 10-min GitHub Pages
+// max-age), let the SW pick up a new sw.js, then reload — same gesture as jp's.
+async function refreshApp() {
+  const el = document.getElementById("refline");
+  if (el) el.textContent = "更新中…";
+  const core = ["index.html", "style.css", "data.js", "app.js", "manifest.webmanifest"];
+  try {
+    await Promise.all(core.map((u) => fetch(u, { cache: "reload" }).catch(() => {})));
+    const reg = navigator.serviceWorker && (await navigator.serviceWorker.getRegistration());
+    if (reg) await reg.update();
+  } catch (e) {}
+  location.reload();
+}
+window.refreshApp = refreshApp;
 
 window.addEventListener("hashchange", render);
 render();

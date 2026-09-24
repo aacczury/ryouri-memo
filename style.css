@@ -75,6 +75,13 @@ body{
 }
 .head .sub{color:var(--soft); font-size:15px; margin:0; max-width:34ch}
 
+.refline{
+  font-family:var(--mono); font-size:12px; color:var(--faint);
+  cursor:pointer; white-space:nowrap;
+  border-bottom:1px dotted var(--faint);
+}
+.refline:hover{color:var(--ink)}
+
 /* ---------- filter bar ---------- */
 .filters{
   display:flex; gap:8px; flex-wrap:wrap;
