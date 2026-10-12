@@ -48,6 +48,7 @@ function renderHome() {
       <p class="kicker">Recipe Notes · 在日本廚房</p>
       <h1>料理メモ</h1>
       <p class="sub">在日本超市買得到的家庭料理 — 繁中作法，食材附日文標籤方便照買。 <span class="refline" id="refline" onclick="refreshApp()">↻ 更新</span></p>
+      ${typeof APP_VERSION !== "undefined" ? `<p class="verline">v ${esc(APP_VERSION.hash)} · ${esc(APP_VERSION.time)}</p>` : ""}
     </header>
     <nav class="filters">${filters}</nav>
     <main class="grid">${cards || '<p class="sub">這個分類還沒有食譜。</p>'}</main>
@@ -132,7 +133,7 @@ function renderDetail(r) {
 async function refreshApp() {
   const el = document.getElementById("refline");
   if (el) el.textContent = "更新中…";
-  const core = ["index.html", "style.css", "data.js", "app.js", "manifest.webmanifest"];
+  const core = ["index.html", "style.css", "version.js", "data.js", "app.js", "manifest.webmanifest"];
   try {
     await Promise.all(core.map((u) => fetch(u, { cache: "reload" }).catch(() => {})));
     const reg = navigator.serviceWorker && (await navigator.serviceWorker.getRegistration());

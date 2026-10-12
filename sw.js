@@ -6,6 +6,7 @@ const CORE = [
   "./",
   "index.html",
   "style.css",
+  "version.js",
   "data.js",
   "app.js",
   "manifest.webmanifest",

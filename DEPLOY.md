@@ -11,8 +11,12 @@ life repo, same pattern as `jp/web`). Hosted at:
 ```
 cd ~/Documents/life/recipes
 # edit data.js (照 README.md 的格式加一筆)
+./bump-version.sh        # 重新產生 version.js（header 的 v <hash> · <時間> 就是它）
 git add -A && git commit -m "add <recipe>" && git push
 ```
+
+手機上按 ↻ 更新 後，看 header 下面那行 `v <hash> · <時間 JST>` 有沒有變，
+就知道有沒有抓到新版。
 
 The service worker is network-first, so phones pick up changes on next open
 (no cache-version bumping needed).

@@ -82,6 +82,11 @@ body{
 }
 .refline:hover{color:var(--ink)}
 
+.verline{
+  font-family:var(--mono); font-size:11px; color:var(--faint);
+  margin:6px 0 0;
+}
+
 /* ---------- filter bar ---------- */
 .filters{
   display:flex; gap:8px; flex-wrap:wrap;
