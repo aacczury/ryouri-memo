@@ -1,1 +1,1 @@
-const APP_VERSION = { hash: "c1a1ef6", time: "2026-10-21 15:22 JST" };
+const APP_VERSION = { hash: "3ed52d4", time: "2026-10-21 15:28 JST" };
